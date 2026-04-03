@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>אלי פנצ'ריה ניידת בירושלים והסביבה | פנצ'ריה ניידת לרכב פרטי, חשמלי, משאיות ואוטובוסים</title>
+  <meta name="description" content="אלי פנצ'ריה ניידת מספק שירותי החלפת צמיגים, תיקון תקרים, חילוץ והחלפת מצברים בירושלים, מודיעין, בית שמש, ים המלח ומעלה אדומים לרכב פרטי, חשמלי, משאיות ואוטובוסים." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#111827" />
+  <style>
+    :root{
+      --bg:#f7f7f5;
+      --surface:#ffffff;
+      --surface-2:#eef2f6;
+      --text:#111827;
+      --muted:#374151;
+      --line:#d1d5db;
+      --brand:#c8a54b;
+      --brand-dark:#8b6a1c;
+      --accent:#1f2937;
+      --success:#0f766e;
+      --shadow:0 12px 30px rgba(17,24,39,.08);
+      --radius:22px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Segoe UI","Arial","Noto Sans Hebrew",sans-serif;
+      background:linear-gradient(180deg,#f7f7f5 0%,#f2f4f7 100%);
+      color:var(--text);
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    img{max-width:100%;display:block}
+    a{color:inherit}
+    p, li, a, button, input, span, strong, small{font-size:18px}
+    small{line-height:1.7}
+    .skip-link{
+      position:absolute;
+      right:-9999px;
+      top:auto;
+    }
+    .skip-link:focus{
+      right:20px;
+      top:20px;
+      z-index:9999;
+      background:#fff;
+      color:#000;
+      padding:12px 16px;
+      border:2px solid #000;
+      border-radius:12px;
+    }
+
+    .container{
+      width:min(100% - 32px, var(--max));
+      margin-inline:auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,.92);
+      border-bottom:1px solid rgba(17,24,39,.08);
+      box-shadow:0 6px 22px rgba(17,24,39,.05);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      min-height:88px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      text-decoration:none;
+    }
+
+    .brand strong{
+      font-size:24px;
+      line-height:1.2;
+      color:var(--accent);
+    }
+
+    .brand span{
+      color:var(--muted);
+    }
+
+    .desktop-nav ul,
+    .mobile-nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    .desktop-nav ul{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .desktop-nav a,
+    .mobile-nav a{
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+    }
+
+    .desktop-nav a:hover,
+    .desktop-nav a:focus,
+    .mobile-nav a:hover,
+    .mobile-nav a:focus{
+      color:var(--brand-dark);
+    }
+
+    .header-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .action-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:52px;
+      padding:12px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow:var(--shadow);
+      border:1px solid transparent;
+      white-space:nowrap;
+    }
+
+    .action-btn:hover,
+    .action-btn:focus{
+      transform:translateY(-1px);
+    }
+
+    .call-btn{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .wa-btn{
+      background:var(--success);
+      color:#fff;
+    }
+
+    .burger{
+      display:none;
+      border:1px solid var(--line);
+      background:#fff;
+      min-width:56px;
+      min-height:56px;
+      border-radius:16px;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+
+    .burger span{
+      display:block;
+      width:26px;
+      height:3px;
+      background:var(--accent);
+      margin:5px auto;
+      border-radius:999px;
+      transition:.25s ease;
+    }
+
+    .burger[aria-expanded="true"] span:nth-child(1){
+      transform:translateY(8px) rotate(45deg);
+    }
+    .burger[aria-expanded="true"] span:nth-child(2){
+      opacity:0;
+    }
+    .burger[aria-expanded="true"] span:nth-child(3){
+      transform:translateY(-8px) rotate(-45deg);
+    }
+
+    .mobile-nav{
+      display:none;
+      padding:0 0 18px;
+    }
+
+    .mobile-nav.open{
+      display:block;
+    }
+
+    .mobile-nav ul{
+      display:grid;
+      gap:10px;
+      padding-top:12px;
+      border-top:1px solid var(--line);
+    }
+
+    .mobile-nav a{
+      display:block;
+      padding:12px 10px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid #e5e7eb;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:48px 0 28px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(200,165,75,.18), transparent 28%),
+        radial-gradient(circle at 15% 20%, rgba(15,118,110,.08), transparent 24%);
+      pointer-events:none;
+    }
+
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-copy,
+    .hero-media{
+      background:rgba(255,255,255,.7);
+      border:1px solid rgba(209,213,219,.8);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:12px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff7e0;
+      color:#6b4f12;
+      border:1px solid #ecd48b;
+      font-weight:700;
+    }
+
+    h1, h2, h3{
+      margin:0 0 16px;
+      line-height:1.3;
+      color:var(--accent);
+    }
+
+    h1{font-size:42px}
+    h2{font-size:32px}
+    h3{font-size:24px}
+
+    .hero p{
+      margin:0 0 16px;
+      color:var(--muted);
+    }
+
+    .hero-note{
+      color:#1f2937;
+      font-weight:600;
+    }
+
+    .hero-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+    }
+
+    .hero-links .action-btn{
+      box-shadow:none;
+    }
+
+    .hero-figure{
+      overflow:hidden;
+      border-radius:20px;
+      border:1px solid rgba(17,24,39,.08);
+      background:#fff;
+    }
+
+    .hero-figure img{
+      width:100%;
+      height:100%;
+      min-height:420px;
+      object-fit:cover;
+    }
+
+    .section{
+      padding:34px 0;
+    }
+
+    .section-head{
+      max-width:860px;
+      margin-bottom:22px;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid #e5e7eb;
+      border-radius:20px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover,
+    .card:focus-within{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(17,24,39,.10);
+    }
+
+    .card h3{
+      margin-bottom:10px;
+    }
+
+    .highlight{
+      background:linear-gradient(180deg,#111827 0%, #1f2937 100%);
+      color:#fff;
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .highlight h2,
+    .highlight h3,
+    .highlight p,
+    .highlight li{
+      color:#fff;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .image-card{
+      overflow:hidden;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(17,24,39,.08);
+    }
+
+    .image-card img{
+      width:100%;
+      height:100%;
+      min-height:420px;
+      object-fit:cover;
+    }
+
+    .check-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+
+    .check-list li{
+      position:relative;
+      padding-right:30px;
+    }
+
+    .check-list li::before{
+      content:"✓";
+      position:absolute;
+      right:0;
+      top:0;
+      color:var(--brand-dark);
+      font-weight:800;
+    }
+
+    .coverage{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .coverage-box,
+    .cta-box{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .areas{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .areas span{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--surface-2);
+      border:1px solid #dbe3ea;
+      font-weight:700;
+    }
+
+    .faq{
+      display:grid;
+      gap:16px;
+    }
+
+    details{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      padding:18px 20px;
+      box-shadow:var(--shadow);
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--accent);
+    }
+
+    summary:focus{
+      outline:2px solid var(--brand-dark);
+      outline-offset:4px;
+      border-radius:8px;
+    }
+
+    .cta-strip{
+      padding:10px 0 40px;
+    }
+
+    .cta-panel{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      background:linear-gradient(135deg,#fff 0%, #f8fafc 100%);
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .site-footer{
+      margin-top:24px;
+      background:#0f172a;
+      color:#f8fafc;
+      padding:38px 0 24px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:24px;
+      align-items:start;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .footer-links a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus{
+      text-decoration:underline;
+    }
+
+    .footer-note,
+    .footer-accessibility,
+    .footer-credit{
+      margin-top:18px;
+    }
+
+    .footer-note p,
+    .footer-accessibility p,
+    .footer-credit p{
+      margin:0 0 12px;
+      color:#e5e7eb;
+    }
+
+    .footer-credit a{
+      color:#f5d27a;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .footer-credit a:hover,
+    .footer-credit a:focus{
+      text-decoration:underline;
+    }
+
+    .visually-hidden{
+      position:absolute !important;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    @media (max-width: 1080px){
+      .desktop-nav{display:none}
+      .burger{display:inline-block}
+      .hero-grid,
+      .split,
+      .coverage,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .cards{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      body{font-size:18px}
+      .header-inner{
+        min-height:80px;
+        gap:12px;
+      }
+      .brand strong{font-size:22px}
+      h1{font-size:34px}
+      h2{font-size:28px}
+      h3{font-size:22px}
+      .cards{
+        grid-template-columns:1fr;
+      }
+      .header-actions{
+        display:none;
+      }
+      .hero-copy,
+      .hero-media,
+      .card,
+      .coverage-box,
+      .cta-box,
+      .highlight{
+        padding:20px;
+      }
+      .hero-figure img,
+      .image-card img{
+        min-height:280px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        scroll-behavior:auto !important;
+        transition:none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content" title="דלג לתוכן המרכזי">דלג לתוכן המרכזי</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" title="מעבר לראש הדף של אלי פנצ'ריה ניידת">
+        <strong>אלי פנצ'ריה ניידת</strong>
+        <span>שירותי צמיגים, חילוץ והחלפה בירושלים והסביבה</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="תפריט ראשי">
+        <ul>
+          <li><a href="#about" title="מעבר לאזור אודות">אודות</a></li>
+          <li><a href="#services" title="מעבר לאזור השירותים">שירותים</a></li>
+          <li><a href="#vehicles" title="מעבר לאזור סוגי הרכבים">סוגי רכבים</a></li>
+          <li><a href="#coverage" title="מעבר לאזור אזורי השירות">אזורי שירות</a></li>
+          <li><a href="#faq" title="מעבר לאזור שאלות ותשובות">שאלות ותשובות</a></li>
+          <li><a href="#contact" title="מעבר לאזור יצירת קשר">יצירת קשר</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions" aria-label="פעולות מהירות">
+        <a class="action-btn call-btn" href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת במספר 053-628-6880">התקשרו: 053-628-6880</a>
+        <a class="action-btn wa-btn" href="https://wa.me/972536286880" target="_blank" rel="noopener" title="פתיחת שיחת וואטסאפ עם אלי פנצ'ריה ניידת">וואטסאפ</a>
+      </div>
+
+      <button class="burger" id="burgerBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="פתיחת תפריט ניווט">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="container">
+      <nav class="mobile-nav" id="mobileMenu" aria-label="תפריט מובייל">
+        <ul>
+          <li><a href="#about" title="מעבר לאזור אודות">אודות</a></li>
+          <li><a href="#services" title="מעבר לאזור השירותים">שירותים</a></li>
+          <li><a href="#vehicles" title="מעבר לאזור סוגי הרכבים">סוגי רכבים</a></li>
+          <li><a href="#coverage" title="מעבר לאזור אזורי השירות">אזורי שירות</a></li>
+          <li><a href="#faq" title="מעבר לאזור שאלות ותשובות">שאלות ותשובות</a></li>
+          <li><a href="#contact" title="מעבר לאזור יצירת קשר">יצירת קשר</a></li>
+          <li><a href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת במספר 053-628-6880">התקשרו: 053-628-6880</a></li>
+          <li><a href="https://wa.me/972536286880" target="_blank" rel="noopener" title="פתיחת שיחת וואטסאפ עם אלי פנצ'ריה ניידת">וואטסאפ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">פנצ'ריה ניידת בירושלים והסביבה</span>
+          <h1 id="hero-title">שירות צמיגים נייד שמבין את הדרך, את הדחיפות ואת הצורך להגיע מוכן</h1>
+          <p>
+            כשיש תקלה בגלגל, כשצריך החלפת צמיג בשטח, כשמשאית עומדת, כשאוטובוס תקוע, או כשהרכב הפרטי פשוט לא יכול להמשיך עוד מטר אחד,
+            צריך פתרון שמגיע אליכם ולא להפך. אלי פנצ'ריה ניידת נותן מענה מקצועי, ישיר ומדויק באזור ירושלים והסביבה,
+            עם שירות שמותאם לרכב פרטי, לרכבים חשמליים, לרכבים מסחריים, למשאיות, לאוטובוסים ולכל מי שמחפש תגובה מהירה עם ציוד מתאים וניסיון מעשי.
+          </p>
+          <p>
+            זהו דף נחיתה שנבנה עבור עסק שעובד בשטח האמיתי: כבישים עירוניים, אזורי תעשייה, חניונים, אתרי עבודה, צירים בין-עירוניים ומוקדי פעילות שבהם זמן הוא עניין קריטי.
+            הגישה כאן אינה גנרית. היא מבוססת על שירות נייד שמכיר את אזור ירושלים, יודע להתמודד עם מגוון סוגי רכבים, ומחזיק בתפיסה מקצועית שנשענת על זמינות, אחריות ויעילות.
+          </p>
+          <p class="hero-note">
+            למי שמחפש <a href="https://mobile-tire-shop.co.il/%D7%A4%D7%A0%D7%A6%D7%A8%D7%99%D7%94-%D7%A0%D7%99%D7%99%D7%93%D7%AA-%D7%91%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D-24-%D7%A9%D7%A2%D7%95%D7%AA/" title="פנצ’ריה ניידת בירושלים" target="_blank" rel="noopener">פנצ’ריה ניידת בירושלים</a>, מדובר בשירות שיודע לתת מענה אמיתי בשטח ולא רק הבטחה על המסך.
+          </p>
+
+          <div class="hero-links">
+            <a class="action-btn call-btn" href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת במספר 053-628-6880">התקשרו עכשיו</a>
+            <a class="action-btn wa-btn" href="https://wa.me/972536286880" target="_blank" rel="noopener" title="פתיחת שיחת וואטסאפ עם אלי פנצ'ריה ניידת">שלחו וואטסאפ</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <figure class="hero-figure">
+            <img src="/IMG-20250611-WA0017.jpg" alt="ניידת שירות של אלי פנצ'ריה ניידת לצד מכלית בשטח עבודה באזור ירושלים" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="about-title">אלי פנצ'ריה ניידת – שירות שמתחיל בזמינות וממשיך במקצועיות בשטח</h2>
+          <p>
+            אלי פנצ'ריה ניידת מציג קו שירות שמתאים למי שלא מחפש רק החלפת גלגל, אלא מענה שלם יותר: הגעה למיקום, אבחון מהיר, ציוד מתאים,
+            התאמה לסוג הרכב, ויכולת לעבוד גם מול צרכים מורכבים יותר של רכבים כבדים, צי רכב, הסעות, הובלה ותפעול.
+          </p>
+        </div>
+
+        <div class="split">
+          <div>
+            <p>
+              באזור כמו ירושלים והסביבה, לא כל תקלה נראית אותו דבר. יש מקרים של תקר פשוט ליד הבית, ויש מקרים שבהם רכב נתקע בדרך לעבודה,
+              משאית עוצרת באזור תעשייה, אוטובוס נדרש לטיפול מיידי, או רכב חשמלי זקוק לפתרון שמתבצע בזהירות ובידע מתאים.
+              כאן בדיוק נכנס היתרון של שירות נייד מקצועי: לא לגרור את הלקוח להמתנה מיותרת, אלא להביא את הפתרון עד למקום שבו הבעיה קרתה.
+            </p>
+            <p>
+              העסק פועל באזור ירושלים, מודיעין, בית שמש, ים המלח, מעלה אדומים וכל מחוז ירושלים, עם מענה שמתאים גם ללקוחות פרטיים וגם ללקוחות עסקיים.
+              השילוב בין היכרות עם האזור, ניסיון עם סוגי רכבים שונים, והבנה של דחיפות בשטח, יוצר שירות שנועד לא רק "להגיע", אלא להגיע נכון.
+            </p>
+            <ul class="check-list" aria-label="יתרונות מרכזיים">
+              <li>שירות מותאם לרכב פרטי, מסחרי, משאיות, אוטובוסים ורכבים חשמליים</li>
+              <li>מענה ישיר בשטח, בבית, בדרך, באתר עבודה או באזור תפעולי</li>
+              <li>פריסה אזורית עם היכרות טובה של ירושלים והסביבה</li>
+              <li>גישה מקצועית שמעדיפה פתרון ענייני, מסודר ומהיר</li>
+            </ul>
+          </div>
+
+          <div class="highlight">
+            <h3>למה השירות הזה מתאים במיוחד לירושלים והסביבה?</h3>
+            <p>
+              כי מדובר באזור עם עומסי תנועה, עליות, אזורי תעשייה, כבישים בין-עירוניים, מוקדי פעילות מרוחקים ואתרי עבודה שבהם כל עיכוב
+              משפיע על סדר היום. פנצ'ריה ניידת באזור כזה צריכה להיות לא רק זמינה, אלא גם מאורגנת, מנוסה ומוכנה למגוון תרחישים.
+            </p>
+            <p>
+              אלי פנצ'ריה ניידת נותן מענה שמבוסס על חשיבה תפעולית אמיתית: להגיע מצויד, להבין את סוג התקלה, ולהחזיר את הרכב לפעילות
+              בצורה שקולה, מקצועית ויעילה ככל האפשר.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="services-title">השירותים המרכזיים</h2>
+          <p>
+            השירות של אלי פנצ'ריה ניידת בנוי סביב הצורך האמיתי של הנהג או בעל העסק בשטח: לקבל פתרון במקום, בלי להסתבך ובלי לאבד זמן יקר.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>תיקון תקרים והחלפת גלגלים</h3>
+            <p>
+              שירות שמיועד למצבים שבהם צריך מענה מהיר בשטח, בחניה, ליד הבית, בעסק או באמצע הדרך. המטרה היא לטפל בתקלה באופן מדויק,
+              לפי מצב הצמיג וההתאמה לסוג הרכב.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>החלפת צמיגים עד הלקוח</h3>
+            <p>
+              כאשר יש צורך בצמיג חדש ולא רק בתיקון נקודתי, השירות הנייד חוסך זמן והתעסקות ומאפשר לקבל מענה ישירות במיקום שבו הרכב נמצא,
+              בלי להיכנס למסלול ארוך של עיכובים.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>שירות לרכב חשמלי ולציוד רגיש</h3>
+            <p>
+              רכבים חשמליים דורשים תשומת לב, היכרות וזהירות. השירות מתאים גם למקרים כאלה, מתוך הבנה שהטיפול חייב להתבצע באופן אחראי
+              ומתאים למאפייני הרכב.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>פנצ'ריה ניידת למשאיות</h3>
+            <p>
+              לרכב כבד אין פריבילגיה להיתקע לאורך זמן. שירות למשאיות מחייב ציוד, ניסיון והבנה של צורכי עבודה, הובלה ותפעול.
+              זהו חלק מרכזי מהשירות של העסק.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>מענה לאוטובוסים והסעות</h3>
+            <p>
+              כאשר אוטובוס או רכב הסעות תקוע, המשמעות היא לעיתים עיכוב של מערך שלם. לכן השירות מותאם גם לצרכים כאלה,
+              עם מענה בשטח בגישה מקצועית ועניינית.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>החלפת מצברים ושירותי דרך משלימים</h3>
+            <p>
+              לצד תחום הצמיגים, ניתן מענה גם למצבים שבהם צריך החלפת מצבר ושירות משלים שמחזיר את הרכב לפעילות, במיוחד כשיש צורך
+              בפתרון מהיר במקום אחד.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="vehicles" aria-labelledby="vehicles-title">
+      <div class="container split">
+        <div class="image-card">
+          <img src="/IMG-20250611-WA0022.jpg" alt="ניידת שירות של אלי פנצ'ריה ניידת מטפלת במשאית אדומה בשטח פתוח" />
+        </div>
+
+        <div>
+          <div class="section-head">
+            <h2 id="vehicles-title">התאמה למגוון סוגי רכבים – לא רק לרכב פרטי</h2>
+            <p>
+              אחד היתרונות המשמעותיים של אלי פנצ'ריה ניידת הוא היכולת לתת מענה רחב, ולא להישאר רק במסגרת של תקר רגיל ברכב פרטי.
+            </p>
+          </div>
+
+          <p>
+            השירות מתאים לנהגים פרטיים, לרכבים חשמליים, לרכבים מסחריים, למשאיות, לאוטובוסים ולמקרים שבהם יש צורך בתגובה מקצועית
+            בשטח תפעולי או לאורך ציר תנועה. בעסק כזה, ההתמחות במשאיות ואוטובוסים אינה רק תוספת נחמדה, אלא חלק חשוב מהזהות המקצועית.
+            זה אומר היכרות עם צרכים של רכבים כבדים יותר, עם דחיפות גבוהה יותר, ועם מצבים שבהם תקלה אחת משפיעה על לו"ז, על עובדים,
+            על הובלה, על קווים ועל תפעול שוטף.
+          </p>
+          <p>
+            עבור לקוחות פרטיים, המשמעות היא שקט וביטחון שיש מי שמגיע. עבור בעלי עסקים, המשמעות היא שירות שמבין מהו מחירו של זמן תקוע.
+            ועבור מי שנמצא באזור ירושלים והסביבה, המשמעות היא מענה מקומי שקרוב לאזורי הפעילות המרכזיים ויודע לעבוד במרחב בצורה יעילה.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="coverage" aria-labelledby="coverage-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="coverage-title">אזורי השירות</h2>
+          <p>
+            השירות של אלי פנצ'ריה ניידת מכוון לאזור ירושלים והסביבה, עם מענה גם לאזורים מרכזיים נוספים שבהם יש תנועה, פעילות עסקית,
+            צירי הובלה ולקוחות פרטיים שצריכים פתרון אמיתי בשטח.
+          </p>
+        </div>
+
+        <div class="coverage">
+          <div class="coverage-box">
+            <p>
+              בין אזורי השירות המרכזיים ניתן למצוא את ירושלים, מודיעין, בית שמש, ים המלח, מעלה אדומים, וכן את כל מחוז ירושלים והסביבה.
+              המשמעות היא לא רק רשימת מקומות, אלא יכולת לעבוד בתוך מרחב גאוגרפי פעיל שבו יש שילוב בין שכונות עירוניות, כניסות ויציאות מהעיר,
+              אזורי תעשייה, חניונים, אזורי מסחר וצירים בין-עירוניים.
+            </p>
+            <p>
+              כאשר מדובר בפנצ'ריה ניידת, הכיסוי האזורי חשוב מאוד. הלקוח לא מחפש רק שם עסק, אלא מישהו שיכול באמת להגיע. לכן הדגש כאן
+              הוא על שירות בנוי נכון לאזור, עם חשיבה פרקטית ויכולת לתת מענה במקום שבו צריך אותו.
+            </p>
+            <div class="areas" aria-label="אזורי שירות מרכזיים">
+              <span>ירושלים</span>
+              <span>מודיעין</span>
+              <span>בית שמש</span>
+              <span>ים המלח</span>
+              <span>מעלה אדומים</span>
+              <span>מחוז ירושלים</span>
+            </div>
+          </div>
+
+          <aside class="cta-box" id="contact" aria-labelledby="contact-title">
+            <h3 id="contact-title">צריכים מענה עכשיו?</h3>
+            <p>
+              אם הרכב תקוע, אם יש תקר, אם צריך החלפת צמיג או שירות צמיגים נייד לרכב פרטי, משאית, אוטובוס או רכב חשמלי,
+              אפשר ליצור קשר ישיר ולקבל מענה ממוקד.
+            </p>
+            <p><strong>טלפון:</strong> 053-628-6880</p>
+            <div class="hero-links">
+              <a class="action-btn call-btn" href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת במספר 053-628-6880">התקשרו</a>
+              <a class="action-btn wa-btn" href="https://wa.me/972536286880" target="_blank" rel="noopener" title="פתיחת שיחת וואטסאפ עם אלי פנצ'ריה ניידת">וואטסאפ</a>
+            </div>
+            <p style="margin-top:16px;">
+              לעדכונים ולנוכחות נוספת ברשת אפשר לבקר גם
+              <a href="https://www.facebook.com/mobiletireshop.co.il" target="_blank" rel="noopener" title="עמוד הפייסבוק של אלי פנצ'ריה ניידת">בעמוד הפייסבוק של החברה</a>.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="faq-title">שאלות נפוצות</h2>
+          <p>
+            כדי להפוך את הבחירה בפנצ'ריה ניידת לברורה יותר, ריכזנו תשובות לשאלות שמעניינות נהגים פרטיים, נהגי משאיות, מפעילי הסעות ובעלי עסקים.
+          </p>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>לאילו סוגי רכבים השירות מתאים?</summary>
+            <p>
+              השירות מתאים לרכבים פרטיים, רכבים מסחריים, רכבים חשמליים, משאיות, אוטובוסים וסוגים נוספים של כלי רכב שזקוקים למענה מקצועי בתחום הצמיגים והשירות הנייד.
+            </p>
+          </details>
+
+          <details>
+            <summary>האם השירות מתאים גם למקרים בשטח ולא רק ליד הבית?</summary>
+            <p>
+              כן. השירות נועד לתת מענה גם בכביש, בחניון, באזור תעשייה, באתר עבודה ובמיקומים שבהם הרכב אינו יכול להמשיך בנסיעה ללא טיפול במקום.
+            </p>
+          </details>
+
+          <details>
+            <summary>האם אתם עובדים גם מחוץ לירושלים?</summary>
+            <p>
+              כן. השירות ניתן בירושלים ובאזורי הסביבה המרכזיים, כולל מודיעין, בית שמש, ים המלח, מעלה אדומים וכל מחוז ירושלים, בהתאם למיקום ולזמינות.
+            </p>
+          </details>
+
+          <details>
+            <summary>למה לבחור דווקא בשירות נייד?</summary>
+            <p>
+              משום ששירות נייד חוסך זמן, מצמצם התעסקות ומאפשר לקבל מענה במקום שבו התקלה קרתה. במצבים רבים זהו הפתרון הנוח, הישיר והיעיל יותר.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-strip" aria-label="אזור קריאה לפעולה">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <h2>אלי פנצ'ריה ניידת – כשצריך מענה אמיתי בשטח</h2>
+            <p>
+              שירותי פנצ'ריה ניידת בירושלים והסביבה לרכב פרטי, רכב חשמלי, משאיות ואוטובוסים, עם גישה מקצועית שמבינה שזמן, בטיחות ויכולת הגעה הם חלק מהשירות עצמו.
+            </p>
+          </div>
+          <div class="hero-links">
+            <a class="action-btn call-btn" href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת במספר 053-628-6880">053-628-6880</a>
+            <a class="action-btn wa-btn" href="https://wa.me/972536286880" target="_blank" rel="noopener" title="פתיחת שיחת וואטסאפ עם אלי פנצ'ריה ניידת">וואטסאפ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2 class="visually-hidden">פרטי יצירת קשר ופרטיות</h2>
+          <p><strong>אלי פנצ'ריה ניידת</strong></p>
+          <p>שירותי פנצ'ריה ניידת באזור ירושלים, מודיעין, בית שמש, ים המלח, מעלה אדומים וכל מחוז ירושלים.</p>
+          <p><strong>טלפון:</strong> <a href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת במספר 053-628-6880">053-628-6880</a></p>
+
+          <div class="footer-links">
+            <a href="tel:0536286880" title="התקשרות לאלי פנצ'ריה ניידת">התקשרו</a>
+            <a href="https://wa.me/972536286880" target="_blank" rel="noopener" title="פתיחת שיחת וואטסאפ עם אלי פנצ'ריה ניידת">וואטסאפ</a>
+            <a href="https://www.facebook.com/mobiletireshop.co.il" target="_blank" rel="noopener" title="עמוד הפייסבוק של אלי פנצ'ריה ניידת">פייסבוק</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-note">
+            <p>
+              אנו מכבדים את פרטיות המשתמשים באתר זה. דף הנחיתה אינו כולל טפסי השארת פרטים ואינו אוסף מידע אישי באופן ישיר.
+              ייתכן ונעשה שימוש בכלי סטטיסטיקה וניתוח תנועה (כגון cookies) לצורך שיפור חוויית המשתמש.
+            </p>
+            <p>
+              האתר מאוחסן ומופעל באמצעות פלטפורמת github, וייתכן כי נתונים טכניים נאספים בהתאם למדיניות הפלטפורמה.
+              ניתן לעיין במדיניות הפרטיות של github בקישור הבא.
+            </p>
+            <p>
+              <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener" title="מדיניות הפרטיות של GitHub">מדיניות הפרטיות של GitHub</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-accessibility">
+        <p>נבנה עם היררכיית כותרות, קישורי עוגן, ALT לתמונות, TITLE לקישורים, גודל טקסט מינימלי של 18px וניגודיות משופרת.</p>
+      </div>
+
+      <div class="footer-credit">
+        <p><a title="נבנה על ידי פרוסייטס" class="" href="https://prosites.co.il/">נבנה על ידי פרוסייטס</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+      const expanded = burgerBtn.getAttribute('aria-expanded') === 'true';
+      burgerBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('open');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
